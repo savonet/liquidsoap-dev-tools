@@ -1,0 +1,14 @@
+name: Build and test OCaml module
+runs:
+  using: composite
+  steps:
+    - name: Cancel Previous Runs
+      uses: styfle/cancel-workflow-action@0.4.0
+      with:
+        access_token: ${{ github.token }}
+    - name: Checkout latest code
+      uses: actions/checkout@v1
+    - name: Install ocaml
+      uses: ocaml/setup-ocaml@v2
+    - name: Install module
+      run: opam install --cli=2.1 --with-test --confirm-level=unsafe-yes .
