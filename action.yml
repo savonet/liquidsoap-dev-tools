@@ -8,4 +8,4 @@ runs:
       uses: ocaml/setup-ocaml@v2
     - name: Install module
       run: opam install --cli=2.1 --with-test --confirm-level=unsafe-yes .
-      shell: base
+      shell: bash
