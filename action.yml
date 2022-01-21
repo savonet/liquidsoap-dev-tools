@@ -11,6 +11,14 @@ runs:
       uses: actions/checkout@v1
     - name: Install ocaml
       uses: ocaml/setup-ocaml@v2
+    - name: Executable extension
+      id: exe_ext
+      run: |
+        if [ "$RUNNER_OS" = "Windows" ]; then
+          echo "##[set-output name=exe_ext;].exe"
+        fi
+      shell: bash
     - name: Install module
-      run: opam install --cli=2.1 --with-test --confirm-level=unsafe-yes . ${{ inputs.extra-packages }}
+      run: |
+        opam${{ steps.exe_ext.outputs.exe_ext }} install --cli=2.1 --with-test --confirm-level=unsafe-yes . ${{ inputs.extra-packages }}
       shell: bash
