@@ -12,12 +12,12 @@ runs:
     - name: Install ocaml
       uses: ocaml/setup-ocaml@v2
     - name: Install module
-      if: ${{ runner.os == "Windows" }}
+      if: runner.os == 'Windows'
       run: |
         opam depext -iy --with-test . ${{ inputs.extra-packages }}
       shell: pwsh
     - name: Install module
-      if: ${{ runner.os != "Windows" }}
+      if: runner.os != 'Windows'
       run: |
         opam -cli=2.1 --confirm-level=unsafe-yes --with-test . ${{ inputs.extra-packages }}
       shell: bash
