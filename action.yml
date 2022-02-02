@@ -11,20 +11,16 @@ runs:
       uses: actions/checkout@v1
     - name: Install ocaml
       uses: ocaml/setup-ocaml@v2
-    - name: Executable extension
-      id: exe_ext
+    - name: Select shell
+      id: shell
       run: |
         if [ "$RUNNER_OS" = "Windows" ]; then
-          echo "##[set-output name=opam_exe;]opam.exe --depext -yi"
-          echo "##[set-output name=opam_path;]${PATH}:/d/cygwin/bin"
+          echo "##[set-output name=shell;]pwsh"
         else
-          echo "##[set-output name=opam_exe;]opam install --cli=2.1 --confirm-level=unsafe-yes"
-          echo "##[set-output name=opam_path;]$PATH"
+          echo "##[set-output name=shell;]bash"
         fi
       shell: bash
     - name: Install module
       run: |
-        ${{ steps.exe_ext.outputs.opam_exe }} --with-test . ${{ inputs.extra-packages }}
-      env:
-        PATH: ${{ steps.exe_ext.outputs.opam_path }}
-      shell: bash
+        opam depext -iy --with-test . ${{ inputs.extra-packages }}
+      shell: ${{ steps.shell.outputs.shell }}
