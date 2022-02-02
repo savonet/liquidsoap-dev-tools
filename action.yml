@@ -15,7 +15,7 @@ runs:
       id: exe_ext
       run: |
         if [ "$RUNNER_OS" = "Windows" ]; then
-          echo "##[set-output name=opam_exe;]${CYGWIN_ROOT}/bin/opam.exe"
+          echo "##[set-output name=opam_exe;]${CYGWIN_ROOT}\\bin\opam.exe"
         else
           echo "##[set-output name=opam_exe;]opam"
         fi
