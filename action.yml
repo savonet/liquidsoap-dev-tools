@@ -15,16 +15,16 @@ runs:
       id: exe_ext
       run: |
         if [ "$RUNNER_OS" = "Windows" ]; then
-          echo "##[set-output name=opam_exe;]opam.exe"
+          echo "##[set-output name=opam_exe;]opam.exe --depext -yi"
           echo "##[set-output name=opam_path;]${PATH}:/d/cygwin/bin"
         else
-          echo "##[set-output name=opam_exe;]opam"
+          echo "##[set-output name=opam_exe;]opam install --cli=2.1 --confirm-level=unsafe-yes"
           echo "##[set-output name=opam_path;]$PATH"
         fi
       shell: bash
     - name: Install module
       run: |
-        ${{ steps.exe_ext.outputs.opam_exe }} install --cli=2.1 --with-test --confirm-level=unsafe-yes . ${{ inputs.extra-packages }}
+        ${{ steps.exe_ext.outputs.opam_exe }} --with-test . ${{ inputs.extra-packages }}
       env:
         PATH: ${{ steps.exe_ext.outputs.opam_path }}
       shell: bash
