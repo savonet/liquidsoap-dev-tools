@@ -11,13 +11,16 @@ runs:
       uses: actions/checkout@v1
     - name: Install ocaml
       uses: ocaml/setup-ocaml@v2
+      with:
+        opam-depext: true
+        opam-pin: true
     - name: Install module
       if: runner.os == 'Windows'
       run: |
-        opam depext -iy --with-test . ${{ inputs.extra-packages }}
+        opam install -y *.opam ${{ inputs.extra-packages }}
       shell: pwsh
     - name: Install module
       if: runner.os != 'Windows'
       run: |
-        opam -cli=2.1 --confirm-level=unsafe-yes --with-test . ${{ inputs.extra-packages }}
+        opam --cli=2.1 --confirm-level=unsafe-yes --with-test *.opam ${{ inputs.extra-packages }}
       shell: bash
