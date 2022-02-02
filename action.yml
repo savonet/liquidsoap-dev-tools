@@ -15,10 +15,12 @@ runs:
       id: exe_ext
       run: |
         if [ "$RUNNER_OS" = "Windows" ]; then
-          echo "##[set-output name=exe_ext;].exe"
+          echo "##[set-output name=opam_exe;]${CYGWIN_ROOT}/bin/opam.exe"
+        else
+          echo "##[set-output name=opam_exe;]opam"
         fi
       shell: bash
     - name: Install module
       run: |
-        opam${{ steps.exe_ext.outputs.exe_ext }} install --cli=2.1 --with-test --confirm-level=unsafe-yes . ${{ inputs.extra-packages }}
+        ${{ steps.exe_ext.outputs.opam_exe }} install --cli=2.1 --with-test --confirm-level=unsafe-yes . ${{ inputs.extra-packages }}
       shell: bash
