@@ -17,10 +17,10 @@ runs:
     - name: Install module
       if: runner.os == 'Windows'
       run: |
-        opam install -y --with-test . ${{ inputs.extra-packages }}
+        opam install --verbose -y --with-test . ${{ inputs.extra-packages }}
       shell: pwsh
     - name: Install module
       if: runner.os != 'Windows'
       run: |
-        opam --cli=2.1 install --confirm-level=unsafe-yes --with-test . ${{ inputs.extra-packages }}
+        opam --cli=2.1 install --verbose --confirm-level=unsafe-yes --with-test . ${{ inputs.extra-packages }}
       shell: bash
