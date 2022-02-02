@@ -16,7 +16,7 @@ runs:
       run: |
         if [ "$RUNNER_OS" = "Windows" ]; then
           echo "##[set-output name=opam_exe;]opam.exe"
-          echo "##[set-output name=opam_path;]${PATH}:${CYGWIN_ROOT_BIN}"
+          echo "##[set-output name=opam_path;]${PATH}:/d/cygwin/bin"
         else
           echo "##[set-output name=opam_exe;]opam"
           echo "##[set-output name=opam_path;]$PATH"
