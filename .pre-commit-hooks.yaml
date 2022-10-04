@@ -1,0 +1,8 @@
+---
+- id: dunefmt
+  name: dunefmt
+  description: Format files using dune
+  entry: dune build @fmt --auto-promote
+  language: system
+  files: \.(ml|mli|dune|dune-project|dune.inc)$
+
