@@ -2,21 +2,21 @@
 - id: dunefmt
   name: dunefmt
   description: Format files using dune
-  entry: dune build @fmt --auto-promote
+  entry: opam exec dune build @fmt --auto-promote
   language: system
   files: (\.ml|\.mli|dune|dune-project|dune.inc)$
 
 - id: dunegen
   name: dunegen
   description: Generate dune files
-  entry: dune build @gendune --auto-promote
+  entry: opam exec dune build @gendune --auto-promote
   language: system
   files: (\.liq|\.ml|\.mli|dune|dune-project|dune.inc)$
 
 - id: duneopam
   name: duneopam
   description: Generate opam files
-  entry: dune build @install
+  entry: opam exec dune build @install
   language: system
-  files: (dune-project)$
+  files: dune-project$
 
