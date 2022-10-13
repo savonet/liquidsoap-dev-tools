@@ -11,7 +11,7 @@
   description: Generate dune files
   entry: opam exec dune -- build @gendune --auto-promote
   language: system
-  always_run: true
+  files: (gen_dune.ml|dune|dune.inc)$
   pass_filenames: false
 
 - id: duneopam
@@ -19,6 +19,6 @@
   description: Generate opam files
   entry: opam exec dune -- build
   language: system
-  always_run: true
+  files: dune-project
   pass_filenames: false
 
