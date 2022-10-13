@@ -9,7 +9,7 @@
 - id: dunegen
   name: dunegen
   description: Generate dune files
-  entry: opam exec dune build -- @gendune --auto-promote
+  entry: opam exec dune -- build @gendune --auto-promote
   language: system
   always_run: true
   pass_filenames: false
@@ -17,7 +17,7 @@
 - id: duneopam
   name: duneopam
   description: Generate opam files
-  entry: opam exec dune build -- @install
+  entry: opam exec dune -- build
   language: system
   always_run: true
   pass_filenames: false
